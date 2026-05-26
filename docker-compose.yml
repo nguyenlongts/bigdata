@@ -1,0 +1,55 @@
+version: "3"
+
+networks:
+  hadoop-net:
+    driver: bridge
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    restart: always
+    networks:
+      - hadoop-net
+    ports:
+      - "9000:9000" # HDFS RPC
+      - "9870:9870" # Web UI -> http://localhost:9870
+    environment:
+      - CLUSTER_NAME=bigdata-cluster
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    restart: always
+    networks:
+      - hadoop-net
+    ports:
+      - "9864:9864"
+    environment:
+      - SERVICE_PRECONDITION=namenode:9870
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+    depends_on:
+      - namenode
+
+  spark-client:
+    build: .
+    container_name: spark-client
+    networks:
+      - hadoop-net
+    volumes:
+      - ./:/app
+    working_dir: /app
+    depends_on:
+      - namenode
+      - datanode
+
+volumes:
+  namenode_data:
+  datanode_data:
