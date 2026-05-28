@@ -92,9 +92,7 @@ encoded_cols = [
 ]
 
 
-# =========================================================
-# FEATURES
-# =========================================================
+
 
 ALL_FEATURES = FEATURE_COLS + encoded_cols
 
@@ -105,9 +103,6 @@ assembler = VectorAssembler(
 )
 
 
-# =========================================================
-# TRAIN / TEST SPLIT
-# =========================================================
 
 print("\n[3] Splitting dataset 80/20...")
 
@@ -120,9 +115,6 @@ print(f"Train rows: {train_df.count()}")
 print(f"Test rows : {test_df.count()}")
 
 
-# =========================================================
-# EVALUATORS
-# =========================================================
 
 ev_rmse = RegressionEvaluator(
     labelCol=TARGET,
