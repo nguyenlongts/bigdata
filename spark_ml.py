@@ -19,8 +19,6 @@ from pyspark.ml.evaluation import RegressionEvaluator
 import pandas as pd
 
 
-
-
 INPUT_PATH = "hdfs://namenode:9000/bigdata/processed_housing"
 
 OUTPUT_DIR = "/app/data"

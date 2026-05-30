@@ -113,8 +113,6 @@ plt.close()
 print("[OK] 02_avg_price_by_district.png")
 
 
-
-
 fig, ax = plt.subplots(figsize=(10, 6))
 
 sns.boxplot(
@@ -142,8 +140,6 @@ plt.savefig(
 plt.close()
 
 print("[OK] 03_price_by_legal.png")
-
-
 
 
 sample = eda.sample(
@@ -184,9 +180,6 @@ plt.close()
 
 print("[OK] 04_area_vs_price.png")
 
-
-
-
 corr_cols = [
     "area",
     "length",
@@ -222,9 +215,6 @@ plt.close()
 
 print("[OK] 05_correlation_heatmap.png")
 
-
-
-
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
 metrics = ["rmse", "r2", "mae"]
@@ -255,8 +245,6 @@ plt.savefig(
 plt.close()
 
 print("[OK] 06_model_comparison.png")
-
-
 
 
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -295,13 +283,9 @@ plt.savefig(
     "output/07_actual_vs_prediction.png",
     dpi=150
 )
-
 plt.close()
 
 print("[OK] 07_actual_vs_prediction.png")
-
-
-
 
 fi_df["label"] = (
     fi_df["feature"]
